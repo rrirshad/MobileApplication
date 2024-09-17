@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:App5.ViewModels"
+             x:Class="App5.Views.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ItemViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <ListView x:Name="ItemsListView" ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Description}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <toolkit:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}" />
+            </ListView.Behaviors>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
